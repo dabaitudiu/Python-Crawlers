@@ -6,27 +6,18 @@ import csv
 import xlwt
 import json
 import time
-
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
 #先通过百科段子页爬到用户分页，再通过分页爬用户的地理信息。得到信息后，通过百度地图API返回经纬度信息，存入EXCEL中。
 
-
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
                          'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'}
-
 urls = ['https://www.qiushibaike.com/8hr/page/{}/'.format(i) for i in range(1,10)]
 basicURL = 'https://www.qiushibaike.com'
-f = open('C://Users/Li Zhenhan/Desktop/GEO1.csv','w')
-
 mapURL = 'http://restapi.amap.com/v3/geocode/geo'
-
-writer = csv.writer(f)
 book = xlwt.Workbook(encoding = 'utf-8')
 sheet = book.add_sheet('Sheet1')
-
-
 global m
 m = 0
 
@@ -63,7 +54,6 @@ def differenttypes(selector):
         else:
             pass
 
-
 def getLocation(info):
     par = {'address': info, 'key': 'cb649a25c1f81c1451adbeca73623251'}
     res = requests.get(mapURL, par)
@@ -78,8 +68,7 @@ def getLocation(info):
         altitude = "NA"
     return latitude,altitude
 
-
-if __name__ == '__main__':
+  if __name__ == '__main__':
     i = 1
     for url in urls:
         print("当前循环：%s " % i)

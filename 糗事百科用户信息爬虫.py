@@ -10,6 +10,8 @@ import time
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
+#先通过百科段子页爬到用户分页，再通过分页爬用户的地理信息。得到信息后，通过百度地图API返回经纬度信息，存入EXCEL中。
+
 
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
                          'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'}

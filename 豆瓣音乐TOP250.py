@@ -23,11 +23,12 @@ for url in urls:
         print("%d/%d completed. " % (i % 25 + 1,25))
         j = 0
         infos = a.xpath('td[2]/div/p/text()')[0].strip()
+        _title = a.xpath('td[2]/div/a/text()')[0].strip()
         _name = infos.split("/")[0]
         _date = infos.split("/")[1]
         _type = infos.split("/")[2]
         _perf = infos.split("/")[-1]
-        coll = [_name, _date, _type, _perf]
+        coll = [_title, _name, _date, _type, _perf]
         for b in coll:
             sheet.write(i,j,b)
             j = j + 1

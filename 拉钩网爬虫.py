@@ -19,16 +19,18 @@ headers = {
            'Connection':'keep-alive',
            'Referer': 'https://www.lagou.com/jobs/list_java?city=%E5%8C%97%E4%BA%AC&cl=false&fromSearch=true&labelWords=&suginput='
 }
+
+#初始化MongoDB参数
+client = pymongo.MongoClient('localhost',27017)
+LaGou = client['LaGou']
+infos = LaGou['infos']
+
+#提取最大页数
 params = {
     'first': 'true',
     'pn':1,
     'kd':'python'
 }
-
-client = pymongo.MongoClient('localhost',27017)
-LaGou = client['LaGou']
-infos = LaGou['infos']
-
 html = requests.post(url,data = params,headers = headers)
 json_data = json.loads(html.text)
 items =  json_data['content']['positionResult']['totalCount']
